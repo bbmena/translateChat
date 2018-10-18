@@ -1,0 +1,29 @@
+.list-box {
+    height: 40vmin;
+}
+
+.list-box-body {
+    background-color: blue;
+    border: 1px solid darkgrey;
+
+}
+.list-box-head {
+    color: black;
+    background-color: lightgray;
+    border-right: 1px solid darkgrey;
+    border-top: 1px solid darkgrey;
+    border-left: 1px solid darkgrey;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.list-box-section {
+    cursor: pointer;
+    background-color: whitesmoke;
+    padding: 5px;
+    color: black;
+}
+.list-box-section:hover {
+    background-color: lightgray;
+    color:white;
+}
