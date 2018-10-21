@@ -4,7 +4,6 @@ import Grid from '@instructure/ui-layout/lib/components/Grid'
 import GridRow from '@instructure/ui-layout/lib/components/Grid/GridRow/index'
 import GridCol from '@instructure/ui-layout/lib/components/Grid/GridCol/index'
 import TextInput from '@instructure/ui-forms/lib/components/TextInput'
-import Button from "@instructure/ui-buttons/lib/components/Button";
 
 class chatWindow extends Component {
 

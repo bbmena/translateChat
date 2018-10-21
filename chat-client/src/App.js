@@ -21,7 +21,7 @@ theme.use();
 
 class App extends Component {
 
-    onConnected(stompClient){
+    onConnected(){
         let user = {name: this.state.username, language: this.state.language};
         this.stompClient.subscribe('/users/public', (payload) => {this.onUserAdded(payload, user)});
         this.stompClient.send("/app/user.addUser", {}, JSON.stringify(user));
@@ -65,7 +65,7 @@ class App extends Component {
     }
 
     connect() {
-        this.socket = new SockJS('http://localhost:8080/ws');
+        this.socket = new SockJS('/ws');
         this.stompClient = Stomp.over(this.socket);
         this.stompClient.connect({}, () =>{this.onConnected(this.stompClient)} ,() => {this.onError()});
     }

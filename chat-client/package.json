@@ -9,6 +9,7 @@
     "@instructure/ui-layout": "^5.30.0",
     "@instructure/ui-themes": "^5.30.0",
     "axios": "^0.18.0",
+    "net": "^1.0.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.4",
@@ -21,6 +22,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "webpack": "=4.19.1",
+    "webpack-cli": "^3.1.2"
   },
   "eslintConfig": {
     "extends": "react-app"
