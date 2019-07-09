@@ -2,7 +2,8 @@ package com.chat.translate.service;
 
 import com.chat.translate.WebSocketEventListener;
 import com.chat.translate.model.User;
-import com.translate.core.TranslatorLanguage;
+
+import com.chat.translate.translator.TranslatorLanguage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

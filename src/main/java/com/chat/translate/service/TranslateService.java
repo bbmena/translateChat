@@ -2,10 +2,12 @@ package com.chat.translate.service;
 
 import com.chat.translate.model.Message;
 import com.chat.translate.model.MessagePackage;
-import com.translate.core.Client;
-import com.translate.core.Translation;
-import com.translate.core.Translator;
-import com.translate.core.TranslatorLanguage;
+import com.chat.translate.translator.Translation;
+import com.chat.translate.translator.TranslationClient;
+import com.chat.translate.translator.Translator;
+
+
+import com.chat.translate.translator.TranslatorLanguage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +23,11 @@ public class TranslateService {
 
     @Autowired
     public TranslateService(@Value("${apiKey}") String apiKey) {
-        this.client = new Client(apiKey);
+        this.client = new TranslationClient(apiKey);
     }
 
     private static final Logger logger = LoggerFactory.getLogger(TranslateService.class);
-    private Client client;
+    private TranslationClient client;
     private Translator translator;
 
     public MessagePackage translateMessage(String message, TranslatorLanguage sourceLang) {

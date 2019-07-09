@@ -1,6 +1,7 @@
 package com.chat.translate.model;
 
-import com.translate.core.TranslatorLanguage;
+
+import com.chat.translate.translator.TranslatorLanguage;
 
 import java.util.HashMap;
 import java.util.Map;
