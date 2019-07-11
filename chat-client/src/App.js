@@ -94,6 +94,7 @@ class App extends Component {
                                 <TextInput label="Username" value={this.state.username} onChange={this.usernameChange}/>
                                 <Select label="Language" value={this.state.language} onChange={(event, option) =>{this.languageChange(option)}}>
                                     <option value="en">English</option>
+                                    <option value="ko">Korean</option>
                                     <option value="es">Spanish</option>
                                     <option value="ja">Japanese</option>
                                     <option value="fr">French</option>

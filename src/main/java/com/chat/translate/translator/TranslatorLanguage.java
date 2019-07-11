@@ -6,6 +6,7 @@ import java.util.Map;
 public enum TranslatorLanguage {
 
     ENGLISH ("en"),
+    KOREAN ("ko"),
     SPANISH ("es"),
     FRENCH ("fr"),
     GERMAN ("de"),
