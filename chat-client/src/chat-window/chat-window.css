@@ -8,6 +8,8 @@
     height: 84vh;
     max-height: 85vh;
     border-bottom: 1px darkgrey solid;
+    overflow-y: scroll;
+    padding: 5px 0 8px 0;
 }
 
 .message-sender {
@@ -31,4 +33,8 @@
 .text-entry {
     height: 5vh;
     margin: 5px 5px 0 5px;
+}
+
+body {
+    overflow: hidden;
 }

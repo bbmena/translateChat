@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+
+import * as ReactDOM from 'react-dom';
+
 import './chat-window.css'
 import Grid from '@instructure/ui-layout/lib/components/Grid'
 import GridRow from '@instructure/ui-layout/lib/components/Grid/GridRow/index'
 import GridCol from '@instructure/ui-layout/lib/components/Grid/GridCol/index'
 import TextInput from '@instructure/ui-forms/lib/components/TextInput'
-import Button from "@instructure/ui-buttons/lib/components/Button";
 
 class chatWindow extends Component {
 
@@ -30,6 +32,18 @@ class chatWindow extends Component {
         }
     }
 
+    scrollToBottom = () => {
+        let { messageList } = this.refs;
+        let scrollHeight = messageList.scrollHeight;
+        let height = messageList.clientHeight;
+        let maxScrollTop = scrollHeight - height;
+        ReactDOM.findDOMNode(messageList).scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    };
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +63,7 @@ class chatWindow extends Component {
                 <Grid rowSpacing="none" colSpacing="none">
                     <GridRow>
                         <GridCol>
-                            <div className="chat-text-area">
+                            <div ref="messageList" className="chat-text-area">
                                 {this.state.messages.map((message, index) => {
                                     return (
                                         <div className="message-block" key={index}>
