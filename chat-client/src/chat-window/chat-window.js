@@ -32,7 +32,7 @@ class chatWindow extends Component {
         }
     }
 
-    scrollToBottom = () => {
+    scrollToBottom(){
         let { messageList } = this.refs;
         let scrollHeight = messageList.scrollHeight;
         let height = messageList.clientHeight;
@@ -55,6 +55,7 @@ class chatWindow extends Component {
         this.handleMessage = this.handleMessage.bind(this);
         this.chatTextChange = this.chatTextChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this.scrollToBottom = this.scrollToBottom.bind(this);
     }
 
     render() {

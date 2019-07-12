@@ -13,6 +13,12 @@ public class Message {
         this.message = message;
     }
 
+    public Message(String lang, String message, String sender) {
+        this.lang = lang;
+        this.message = message;
+        this.sender = sender;
+    }
+
     public String getLang() {
         return lang;
     }
