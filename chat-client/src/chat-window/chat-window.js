@@ -8,6 +8,8 @@ import GridRow from '@instructure/ui-layout/lib/components/Grid/GridRow/index'
 import GridCol from '@instructure/ui-layout/lib/components/Grid/GridCol/index'
 import TextInput from '@instructure/ui-forms/lib/components/TextInput'
 
+import axios from 'axios';
+
 class chatWindow extends Component {
 
     sendMessage(){
@@ -32,6 +34,12 @@ class chatWindow extends Component {
         }
     }
 
+    getHistory() {
+        axios.get("http://localhost:8080/api/history", {params:{userLang: this.props.language, historyIndex: 0}}).then(res => {
+            this.setState({messages: [...res.data, ...this.state.messages]});
+        })
+    }
+
     scrollToBottom(){
         let { messageList } = this.refs;
         let scrollHeight = messageList.scrollHeight;
@@ -51,6 +59,7 @@ class chatWindow extends Component {
             messages: []
         };
         this.props.stompClient.subscribe("/chat/public", (payload)=>{this.handleMessage(JSON.parse(payload.body))});
+        this.getHistory();
         this.sendMessage = this.sendMessage.bind(this);
         this.handleMessage = this.handleMessage.bind(this);
         this.chatTextChange = this.chatTextChange.bind(this);

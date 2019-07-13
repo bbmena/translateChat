@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,7 @@ public class ChatLogService {
         Pageable pageable = PageRequest.of(pageIndex, 20, Sort.by("id").descending());
         Page<ChatLogEntry> page = chatLogEntryRepository.findAll(pageable);
         return page.getContent().stream()
+                .sorted(Comparator.comparingLong(ChatLogEntry::getId))
                 .map(chat -> new Message(chat.getLanguage(), chat.getChatText(), chat.getUserName()))
                 .collect(Collectors.toCollection(ArrayList::new));
     }

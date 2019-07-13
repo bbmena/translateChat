@@ -37,6 +37,17 @@ public class TranslateService {
         return messagePackageBuilder(message, sourceLang);
     }
 
+    public Message singleTranslation(String message, TranslatorLanguage sourceLang, TranslatorLanguage targetLang) {
+        Message msg = null;
+        try{
+            Translation translation = translator.getTranslation(message, sourceLang, targetLang);
+            msg = new Message(targetLang.getLang(), translation.getTranslatedText());
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+        return msg;
+    }
+
     private MessagePackage messagePackageBuilder(String message, TranslatorLanguage sourceLang){
         MessagePackage messagePackage = new MessagePackage();
         for(TranslatorLanguage lang : userService.getUserLanguages()){
