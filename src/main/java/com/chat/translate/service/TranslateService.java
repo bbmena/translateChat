@@ -5,8 +5,6 @@ import com.chat.translate.model.MessagePackage;
 import com.chat.translate.translator.Translation;
 import com.chat.translate.translator.TranslationClient;
 import com.chat.translate.translator.Translator;
-
-
 import com.chat.translate.translator.TranslatorLanguage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,36 +17,17 @@ import java.io.IOException;
 @Service
 public class TranslateService {
 
-    @Autowired private UserService userService;
+    private static final Logger logger = LoggerFactory.getLogger(TranslateService.class);
+    private Translator translator;
+    private UserService userService;
 
     @Autowired
-    public TranslateService(@Value("${apiKey}") String apiKey) {
-        this.client = new TranslationClient(apiKey);
+    public TranslateService(@Value("${apiKey}") String apiKey, UserService userService) {
+        this.translator = new Translator(new TranslationClient(apiKey));
+        this.userService = userService;
     }
-
-    private static final Logger logger = LoggerFactory.getLogger(TranslateService.class);
-    private TranslationClient client;
-    private Translator translator;
 
     public MessagePackage translateMessage(String message, TranslatorLanguage sourceLang) {
-        if(translator == null) {
-            translator = new Translator(client);
-        }
-        return messagePackageBuilder(message, sourceLang);
-    }
-
-    public Message singleTranslation(String message, TranslatorLanguage sourceLang, TranslatorLanguage targetLang) {
-        Message msg = null;
-        try{
-            Translation translation = translator.getTranslation(message, sourceLang, targetLang);
-            msg = new Message(targetLang.getLang(), translation.getTranslatedText());
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
-        return msg;
-    }
-
-    private MessagePackage messagePackageBuilder(String message, TranslatorLanguage sourceLang){
         MessagePackage messagePackage = new MessagePackage();
         for(TranslatorLanguage lang : userService.getUserLanguages()){
             if(lang == sourceLang){
@@ -63,6 +42,17 @@ public class TranslateService {
             }
         }
         return messagePackage;
+    }
+
+    public Message singleTranslation(String message, TranslatorLanguage sourceLang, TranslatorLanguage targetLang) {
+        Message msg = null;
+        try{
+            Translation translation = translator.getTranslation(message, sourceLang, targetLang);
+            msg = new Message(targetLang.getLang(), translation.getTranslatedText());
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+        return msg;
     }
 
 }
