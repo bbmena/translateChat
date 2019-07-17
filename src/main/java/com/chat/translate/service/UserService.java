@@ -18,11 +18,17 @@ public class UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketEventListener.class);
 
-    private static Map<String, User> userMap = new HashMap<>();
-    private static Map<TranslatorLanguage, Integer> userLanguages = new HashMap<>();
+    private Map<String, User> userMap;
+    private Map<TranslatorLanguage, Integer> userLanguages;
+
+    public UserService() {
+        userMap = new HashMap<>();
+        userLanguages = new HashMap<>();
+    }
 
     public List<User> getUserList() {
         return new ArrayList(userMap.values());
+
     }
 
     public void addUser(User user) {
