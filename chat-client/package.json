@@ -8,7 +8,7 @@
     "@instructure/ui-forms": "^5.30.0",
     "@instructure/ui-layout": "^5.30.0",
     "@instructure/ui-themes": "^5.30.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.4",
